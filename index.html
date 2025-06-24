@@ -2,89 +2,62 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Admin Pembayaran</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pembayaran QRIS & DANA</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f8f8;
       margin: 0;
-      background-color: #f2f2f2;
-    }
-    header {
-      background-color: #0a85ff;
-      color: white;
-      padding: 20px;
+      padding: 0;
       text-align: center;
     }
     .container {
+      margin: 30px auto;
+      max-width: 500px;
+      background: #fff;
+      border-radius: 10px;
       padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    table {
+    h2 {
+      color: #333;
+    }
+    .qris-image {
       width: 100%;
-      border-collapse: collapse;
+      max-width: 400px;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+    .info {
+      margin-top: 10px;
+      color: #666;
+    }
+    .btn {
+      display: inline-block;
       margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: left;
-    }
-    th {
       background-color: #0a85ff;
       color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
     }
-    .badge {
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 13px;
-      color: white;
-    }
-    .paid { background-color: #28a745; }
-    .pending { background-color: #ffc107; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Dashboard Admin</h1>
-    <p>Riwayat Pembayaran QRIS & DANA</p>
-  </header>
   <div class="container">
-    <table>
-      <thead>
-        <tr>
-          <th>Nama</th>
-          <th>Nominal</th>
-          <th>Metode</th>
-          <th>Status</th>
-          <th>Waktu</th>
-        </tr>
-      </thead>
-      <tbody id="log-data">
-        <!-- Data akan diisi dari localStorage atau API -->
-      </tbody>
-    </table>
+    <h2>Scan untuk Bayar</h2>
+    <img src="qris.jpg" alt="QRIS Code" class="qris-image" />
+    <div class="info">
+      <p>Nama Toko: <strong>TOKOAERO OK2471435</strong></p>
+      <p>Metode: QRIS / DANA</p>
+      <p>ID: ID2025408275456</p>
+      <p>Dicetak: 2025-05-30</p>
+    </div>
+    <a class="btn" href="https://www.aspi-qris.id" target="_blank">Cek Penyelenggara</a>
   </div>
-
-  <script>
-    const contohData = [
-      { nama: "Andi", nominal: 10000, metode: "QRIS", status: "Lunas", waktu: "2025-06-24 12:30" },
-      { nama: "Budi", nominal: 20000, metode: "DANA", status: "Pending", waktu: "2025-06-24 12:45" },
-    ];
-
-    const tbody = document.getElementById('log-data');
-
-    contohData.forEach(data => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${data.nama}</td>
-        <td>Rp${data.nominal.toLocaleString()}</td>
-        <td>${data.metode}</td>
-        <td><span class="badge ${data.status.toLowerCase() === 'lunas' ? 'paid' : 'pending'}">${data.status}</span></td>
-        <td>${data.waktu}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  </script>
 </body>
 </html>
