@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin Pembayaran</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f2f2f2;
+    }
+    header {
+      background-color: #0a85ff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #0a85ff;
+      color: white;
+    }
+    .badge {
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 13px;
+      color: white;
+    }
+    .paid { background-color: #28a745; }
+    .pending { background-color: #ffc107; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dashboard Admin</h1>
+    <p>Riwayat Pembayaran QRIS & DANA</p>
+  </header>
+  <div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Nominal</th>
+          <th>Metode</th>
+          <th>Status</th>
+          <th>Waktu</th>
+        </tr>
+      </thead>
+      <tbody id="log-data">
+        <!-- Data akan diisi dari localStorage atau API -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const contohData = [
+      { nama: "Andi", nominal: 10000, metode: "QRIS", status: "Lunas", waktu: "2025-06-24 12:30" },
+      { nama: "Budi", nominal: 20000, metode: "DANA", status: "Pending", waktu: "2025-06-24 12:45" },
+    ];
+
+    const tbody = document.getElementById('log-data');
+
+    contohData.forEach(data => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${data.nama}</td>
+        <td>Rp${data.nominal.toLocaleString()}</td>
+        <td>${data.metode}</td>
+        <td><span class="badge ${data.status.toLowerCase() === 'lunas' ? 'paid' : 'pending'}">${data.status}</span></td>
+        <td>${data.waktu}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  </script>
+</body>
+</html>
